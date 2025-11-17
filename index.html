@@ -1,250 +1,588 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seguridad informática</title>
+    <title>Seguridad Informática</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.css" rel="stylesheet">
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            background: #181818;
-            color: #f4f4f4;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --azul-primary: #2f64ff;
+            --azul-primary-dark: #1a315a;
+            --azul-gradient: linear-gradient(90deg, #243b55 0%, #141e30 100%);
+            --bg-card: #202837;
+            --bg-slide1: #141e30;
+            --bg-slide2: #243b55;
+            --accent-yellow: #f6f62c;
+            --accent-cyan: #36e0ff;
         }
 
-        .hero {
+        body {
+            background: var(--azul-gradient);
+            color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+        }
+
+        .presentation-wrapper {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Hero Slide Style */
+        .hero-slide {
             position: relative;
-            width: 99vw;
-            height: 98vh;
-            min-height: 350px;
-            background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.45)),
+            background: linear-gradient(rgba(31, 39, 69, 0.75), rgba(30, 33, 66, 0.73)),
                 url('Presentación Inteligencia Artificial Moderno Negro.jpg') center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1;
+            height: 70vh;
+            min-height: 340px;
         }
 
         .hero-content {
-            background: rgba(0, 0, 0, 0.8);
-            border: 3px solid #4e9cff;
-            border-radius: 10px;
-            color: #fff;
-            padding: 2.5rem 3rem;
-            max-width: 680px;
-            width: 90vw;
-            box-shadow: 0 3px 18px 0 rgba(50, 100, 200, 0.18);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
+            background: rgba(22, 24, 46, 0.85);
+            border: 3px solid var(--azul-primary);
+            border-radius: 16px;
+            box-shadow: 0 6px 30px #0008;
+            max-width: 700px;
+            padding: 3rem 2.8rem;
+            text-align: center;
         }
 
         .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 900;
+            font-size: 3.2rem;
             letter-spacing: 2px;
             font-family: 'Georgia', 'Times New Roman', Times, serif;
-            margin-bottom: 0.4em;
-            color: #4e9cff;
-            text-shadow: 1px 2px 14px rgba(30, 100, 200, 0.20);
+            font-weight: bold;
+            color: var(--azul-primary);
+            text-shadow: 2px 4px 30px rgba(47, 100, 255, 0.23);
         }
 
         .hero-content p {
-            font-size: 1.35rem;
-            color: #e0e7ef;
+            font-size: 1.5rem;
+            color: #e7f0fe;
             margin-bottom: 0;
-            text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.14);
+            font-weight: 500;
         }
 
-        main {
-            margin-top: -40px;
-            z-index: 3;
+        /* Presentation Slide/Card Layout */
+        .slide-section {
+            max-width: 1020px;
+            margin: 0 auto 2.3rem auto;
+            padding: 2.5rem 1.5rem 1.3rem 1.5rem;
+            background: var(--bg-card);
+            border-radius: 14px;
+            box-shadow: 0 6px 30px rgba(35, 60, 100, 0.15);
+            margin-top: -60px;
             position: relative;
         }
 
-        section {
-            display: block;
-            padding: 2.5rem 1rem 1.5rem 1rem !important;
-            margin: 0 auto;
-            max-width: 800px;
-            background: #202837;
-            border-radius: 6px;
-            box-shadow: 0 2px 10px rgba(44, 62, 80, 0.08);
-        }
-
-        .maincontent {
-            padding: 0 20px;
-        }
-
-        .maincontent h5 {
-            color: #47a9e4;
-            font-weight: 800;
-            font-size: 2rem;
-            text-align: left;
-            margin-top: 0.5em;
-        }
-
-        .maincontent small {
-            font-size: 1.1rem;
+        .slide-title {
+            font-size: 2.25rem;
             font-weight: bold;
-            color: #ffd600;
+            color: var(--azul-primary);
+            margin-bottom: 10px;
+            text-shadow: 0px 3px 18px #2f65ff22;
         }
 
-        .maincontent p {
-            font-size: 1.1rem;
-            color: #e4e7eb;
-            margin-bottom: 1.1em;
+        .slide-subtitle {
+            color: var(--accent-yellow);
+            font-size: 1.13rem;
+            font-weight: bold;
+            margin-bottom: 0;
+        }
+
+        .slide-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2.4rem;
+            align-items: stretch;
+            margin-bottom: 1.4em;
+        }
+
+        .slide-col {
+            flex: 1 1 340px;
+            min-width: 270px;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .slide-img {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+            max-height: 310px;
+            margin-bottom: 0.7em;
+        }
+
+        .maincontent p,
+        .maincontent li {
+            font-size: 1.13rem;
             line-height: 1.67;
+            color: #e3ecf8;
+        }
+
+        .slide-list-title {
+            font-weight: bold;
+            font-size: 1.15rem;
+            color: var(--accent-cyan);
+            letter-spacing: 0.5px;
+            margin-top: 1.2em;
+        }
+
+        .slide-list {
+            list-style: disc;
+            padding-left: 2.1em;
+            color: #fffbe7;
+        }
+
+        .slide-list li b {
+            color: var(--accent-cyan);
+        }
+
+        .slide-list li {
+            margin-bottom: 0.33em;
+        }
+
+        .slide-card {
+            background: #232a43;
+            border-left: 4px solid var(--azul-primary);
+            border-radius: 10px;
+            padding: 1em 1.2em;
+            margin: 1em 0;
+            box-shadow: 0 2px 16px 0 rgba(56, 160, 255, 0.09);
+        }
+
+        .timeline {
+            background: #161c2e;
+            border-radius: 10px;
+            padding: 1.45em 2em 1.7em 2em;
+            margin: 2em auto;
+            box-shadow: 0 8px 20px 0 #27407818;
+            border-left: 6px solid var(--azul-primary);
+            position: relative;
+        }
+
+        .timeline-event {
+            position: relative;
+            margin-left: 2.3em;
+            margin-bottom: 1.7em;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -2.3em;
+            top: 0;
+            background: var(--azul-primary);
+            color: #fff;
+            border-radius: 50%;
+            width: 2.5em;
+            height: 2.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            border: 2.5px solid #232a43;
+            box-shadow: 0 4px 13px #2f65ff55;
+        }
+
+        .timeline-content {
+            font-size: 1.08rem;
+            background: transparent;
+        }
+
+        .slide-quote {
+            border-left: 4px solid var(--azul-primary);
+            background: #222844;
+            padding: 1.1em 1.5em;
+            border-radius: 10px;
+            color: var(--accent-yellow);
+            margin: 2.1em 0 1.5em 0;
+            font-style: italic;
         }
 
         .autor-section {
             display: flex;
             align-items: center;
-            gap: 0.8em;
-            margin-top: 2rem;
-            border-top: 1px solid #3d567c;
+            gap: 0.9em;
+            margin-top: 2.1rem;
+            border-top: 1px solid #305285;
             padding-top: 1.3rem;
+            font-weight: 600;
         }
 
         .autor-section i {
             font-size: 2.3rem;
-            color: #4e9cff;
+            color: var(--azul-primary);
         }
 
         .autor-section p {
             margin: 0;
-            color: #cce1fe;
+            color: #beecff;
             font-weight: 700;
-            letter-spacing: 0.5px;
-        }
-
-
-        @media (max-width: 950px) {
-            .hero-content {
-                max-width: 95vw;
-                min-width: 0;
-                width: 98vw;
-            }
-        }
-
-        @media (max-width: 700px) {
-            .hero-content h1 {
-                font-size: 2.1rem;
-            }
-
-            .maincontent h5 {
-                font-size: 1.3rem;
-            }
-
-            .maincontent p {
-                font-size: 1rem;
-            }
-
-            section {
-                padding: 1.7rem 0.45rem !important;
-            }
+            letter-spacing: 0.7px;
         }
 
         .footer-bg {
-            background: #181d29 !important;
-            border-top: 1.5px solid #375381 !important;
+            background: #161c2e !important;
+            border-top: 2px solid var(--azul-primary-dark) !important;
+            font-size: 1rem;
         }
 
         .footer-bg p {
-            color: #c6c9d1;
-            font-size: 0.99rem;
-            margin-bottom: 0;
+            color: #9db3e7;
+            font-size: 1rem;
+        }
+
+        .footer-bg i {
+            color: var(--azul-primary);
+        }
+
+        /* Responsive Slides */
+        @media (max-width: 1100px) {
+            .slide-section {
+                max-width: 100vw;
+            }
+        }
+
+        @media (max-width: 850px) {
+            .slide-row {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content {
+                padding: 2em 1em;
+            }
+
+            .slide-section {
+                padding: 1.1em 0.4em;
+            }
+
+            .slide-title {
+                font-size: 1.33rem;
+            }
+
+            .timeline {
+                padding: 1em 1em 1.6em 1em;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="hero">
-        <div class="hero-content">
-            <h1>[ Ciberseguridad ]</h1>
-            <p>Herramientas de seguridad en la red</p>
-        </div>
-    </div>
-    <main>
-        <section>
-            <div class="maincontent">
-                <h5>Kismet Wireless</h5>
-                <p>
-                    <b>Kismet Wireless</b> es un detector avanzado de redes inalámbricas que permite capturar paquetes y
-                    es esencial para la detección de intrusiones inalámbricas. Proporciona a los profesionales de la
-                    seguridad una visión clara de las redes a su alrededor, facilitando la identificación de
-                    vulnerabilidades y la protección de información crítica.<br><br>
-                    Puede usarse tanto para análisis de errores, controles de seguridad, inventarios de entornos WLAN,
-                    vigilancia y, lamentablemente, también para espiar redes WLAN con fines ilegales. El rastreador
-                    funciona en modo texto y obtiene los datos de los adaptadores WLAN configurados en modo monitor
-                    pasivo.
-                </p>
+    <div class="presentation-wrapper">
+        <!-- Slide 1: HERO -->
+        <section class="hero-slide">
+            <div class="hero-content">
+                <h1><i class="bi bi-shield-check"></i> Ciberseguridad</h1>
+                <p>Herramientas clave y buenas prácticas para proteger tu red</p>
+            </div>
+        </section>
 
-                <small>Características principales:</small>
-                <ul class="mt-2" style="color:#fffce4;">
-                    <li>
-                        <b>Detector de redes inalámbricas:</b> Identifica múltiples redes en un área determinada, ideal
-                        para auditoría y seguridad de redes.
-                    </li>
-                    <li>
-                        <b>Captura de paquetes:</b> Permite recopilar el tráfico de la red para su posterior análisis,
-                        ayudando a encontrar vulnerabilidades.
-                    </li>
-                    <li>
-                        <b>Modo monitor pasivo:</b> Obtiene datos sin interferir o conectarse activamente a la red.
-                    </li>
-                    <li>
-                        <b>Utilidad en inventarios y vigilancia:</b> Facilita obtener un mapa de las redes WLAN
-                        disponibles y vigilar actividades sospechosas.
-                    </li>
-                </ul>
+        <!-- Slide 2: Kismet Wireless -->
+        <section class="slide-section">
+            <div class="slide-title slide-card mb-3">
+                <i class="bi bi-broadcast-pin"></i> Kismet Wireless
+            </div>
+            <div class="slide-row">
+                <div class="slide-col">
+                    <img src="https://cdn-b.saashub.com/images/app/screenshots/17/ffecfaf5acb0/landing-original.jpg?1671946705"
+                        alt="Kismet dashboard" class="slide-img shadow" />
+                    <img src="https://www.101labs.net/wp-content/uploads/2022/04/46-2.png" alt="Kismet packet capture"
+                        class="slide-img shadow" />
+                </div>
+                <div class="slide-col">
+                    <div class="slide-subtitle mb-2">¿Qué es?</div>
+                    <p>
+                        <b>Kismet Wireless</b> Kismet Wireless es un detector de redes inalámbricas que permite la
+                        captura de paquetes y es una herramienta esencial en la detección de intrusiones inalámbricas
+                        (WIDS). Proporciona a los profesionales de la seguridad una visión clara de las redes a su
+                        alrededor, facilitando la identificación de vulnerabilidades y la protección de información
+                        crítica.
+                    </p>
 
-                <small>Ventajas</small>>
-                <ul>
-                    <li><b>Deteccion de multiples redes:</b>Kismet Wireless permite la detección simultánea de múltiples
-                        redes inalámbricas, lo que facilita la vigilancia y análisis en entornos complejos.</li>
-                    <li><b>Compatibilidad Multiplataforma:</b>Es compatible con diversas plataformas, incluyendo Linux y
-                        Windows, lo que permite su uso en una variedad de dispositivos y sistemas operativos.</li>
-                    <li><b>Identificar vulnerabilidades:</b>Kismet Wireless ayuda a identificar vulnerabilidades en
-                        redes inalámbricas, permitiendo a los administradores de seguridad tomar medidas proactivas para
-                        proteger la infraestructura.</li>
-                </ul>
-
-                <div class="autor-section">
-                    <i class="bi bi-person-circle"></i>
-                    <p>Autor: Enier Arauz</p>
+                    <div class="slide-list-title">Características principales</div>
+                    <ul class="slide-list">
+                        <li><b>Detector de redes</b>: permitiendo identificar múltiples
+                            redes inalámbricas en un área determinada, lo que es esencial para la seguridad y auditoría
+                            de redes.</li>
+                        <li><b>Captura de paquetes</b>:
+                            datos que circulan a través de las redes, lo que permite un análisis detallado
+                            del tráfico y la identificación de posibles problemas de seguridad.</li>
+                        <li><b>Analisis de trafico</b>se utiliza comúnmente en auditorías de seguridad para evaluar la
+                            integridad de las redes y detectar vulnerabilidades que podrían ser explotadas por intrusos.
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </section>
-        <section>
-
-        </section>
-    </main>
-
-    <div>
-        <footer class="footer-bg d-flex flex-wrap justify-content-between align-items-center py-3 px-4">
-            <p class="col-md-5">© 2025 Contenido creado por estudiante de la Universidad Autónoma de Chiriquí</p>
-            <div class="col-md-3 d-flex align-items-center justify-content-center mb-2 mb-md-0">
-                <i class="bi bi-shield-lock" style="font-size: 1.7rem; color: #4e9cff;"></i>
-                <span class="ms-2" style="font-size:1.12rem;">Seguridad Informática</span>
+            <div class="slide-section">
+                <div class="slide-col">
+                    <div class="slide-list-title">Ventajas</div>
+                    <ul class="slide-list">
+                        <li><b>Multiples redes</b>:permite la detección simultánea de múltiples redes inalámbricas, lo
+                            que facilita la vigilancia y análisis en entornos complejos..</li>
+                        <li><b>Compatibilidad multiplataforma</b>: Es compatible con diversas plataformas, incluyendo
+                            Linux y Windows, lo que permite su uso en una variedad de dispositivos y sistemas
+                            operativos.</li>
+                        <li><b>Identificación de vulnerabilidades</b>: Kismet Wireless ayuda a identificar
+                            vulnerabilidades en redes inalámbricas, permitiendo a los administradores de seguridad tomar
+                            medidas proactivas para proteger la infraestructura.</li>
+                    </ul>
+                </div>
+                <div class="slide-col">
+                    <div class="slide-list-title">Limitaciones y precauciones</div>
+                    <ul class="slide-list">
+                        <li>Requiere hardware compatible como adaptadores con modo monitor.</li>
+                        <li>No es intuitivo; curva de aprendizaje alta.</li>
+                        <li>Puede usarse de manera indebida si no se aplica ética y legalidad.</li>
+                    </ul>
+                </div>
             </div>
-            <ul class="nav col-md-4 justify-content-end"></ul>
+            <div class="slide-section">
+                <div class="slide-subtitle">Conclusión</div>
+                <p>
+                    Kismet Wireless proporciona la visibilidad completa y la detección temprana de amenazas que son
+                    cruciales en la ciberseguridad actual. Es una herramienta indispensable tanto para profesionales
+                    experimentados como para entusiastas que buscan fortalecer la protección de sus redes. Su uso
+                    responsable no solo ayuda a identificar vulnerabilidades, sino que también contribuye a construir un
+                    entorno digital más seguro.
+                </p>
+            </div>
+            <img src="https://eldernode.com/wp-content/uploads/2025/05/How-to-Install-and-Use-Kismet-on-Kali-Linux.webp"
+                class="img-fluid rounded shadow mb-3" alt="Kismet en acción" />
+        </section>
+
+        <!-- Slide 3: CommView by TamoSoft -->
+        <section class="slide-section">
+            <div class="slide-title slide-card mb-3">
+                <i class="bi bi-diagram-3"></i> CommView by TamoSoft
+            </div>
+            <div class="slide-row">
+                <div class="slide-col">
+                    <div class="slide-subtitle">¿Qué es?</div>
+                    <p>
+                        CommView es una herramienta creada por TamoSoft, diseñada para capturar y analizar el tráfico de
+                        red de manera detallada. Es compatible tanto con redes Ethernet como Wi-Fi.
+
+                        Además, tiene la capacidad de decodificar más de 300 protocolos, lo que la convierte en una
+                        opción potente para quienes necesitan entender el funcionamiento interno de su red.
+                    </p>
+                    <p>Captura paquetes en tiempo real
+                        y va recogiendo todos los paquetes de datos que
+                        viajan por Ethernet o Wi-Fi. Esto permite ver lo que realmente circula en la red en ese instante
+                        (direcciones IP, protocolos usados, aplicaciones activas). <br><br>
+
+                        <b> Presenta estadísticas y gráficos de tráfico.</b>
+                    <ul>
+                        <li>Uso del ancho de la banda</li>
+                        <li>DIspositovos mas activos</li>
+                        <li>Protocolos mas ultilizados</li>
+                    </ul>
+                    </p>
+
+                </div>
+                <div class="slide-col">
+                    <img src="https://www.tamos.com/media/wysiwyg/commviewforwifi/02.png" alt="CommView Interfaz"
+                        class="slide-img shadow" />
+                </div>
+            </div>
+
+            <div class="slide-section">
+                <div class="slide-list-title">¿Por qué es importante?</div>
+                <p>
+                    Es importante porque ofrece una visión clara y completa de todo el tráfico, ya sea en tiempo
+                    real o fuera de línea. Esto ayuda a identificar problemas de seguridad y rendimiento antes de
+                    que se conviertan en algo más grave. Además, facilita las auditorías y la resolución de
+                    incidentes críticos, lo que es clave para mantener todo funcionando sin interrupciones. Lo mejor
+                    es que funciona tanto en redes cableadas como inalámbricas, adaptándose a diferentes entornos y
+                    necesidades.
+                </p>
+                <div class="slide-col">
+                    <div class="slide-list-title">Características principales</div>
+                    <ul class="slide-list">
+                        <li><b>Monitorización avanzada</b>: captura y analiza el tráfico de red a un nivel granular,
+                            ofreciendo datos críticos para la resolución de problemas y la seguridad.troubleshooting.
+                        </li>
+                        <li><b>Análisis dual</b>: Admite análisis en tiempo real y fuera de línea de flujos de datos a
+                            través de Ethernet y Wi-Fi, lo que permite obtener información completa sobre protocolos y
+                            conexiones..</li>
+                        <li><b>Decodificador flexible</b>: Soporta cientos de protocolos y genera estadísticas
+                            detalladas para ayudar a identificar problemas de red y mejorar los procesos de auditoría de
+                            seguridad .</li>
+                    </ul>
+                </div>
+                <div class="slide-col">
+                    <div class="slide-list-title">Ventajas</div>
+                    <ul class="slide-list">
+                        <li><b>Trayectoria y soporte</b>: Respaldado por más de 20 años de desarrollo continuo.</li>
+                        <li><b>Actualización constante</b>: Incorpora nuevas tendencias y mejoras de seguridad.</li>
+                        <li><b>Versátil</b>: Útil en ambientes empresariales, educativos o de investigación.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-section">
+                <div class="slide-subtitle">Conclusión</div>
+                <p>
+                    CommView destaca por su análisis profundo, descifrado de comunicaciones SSL/TLS y reportes
+                    avanzados, facilitando la identificación y solución precisa de amenazas y cuellos de botella.
+                </p>
+            </div>
+        </section>
+
+        <!-- Slide 4: Wi-Fi Protected Access (WPA) -->
+        <section class="slide-section">
+            <div class="slide-title slide-card mb-3">
+                <i class="bi bi-wifi"></i> Wi-Fi Protected Access (WPA)
+            </div>
+            <div class="slide-row">
+                <div class="slide-col">
+                    <img src="https://media.gettyimages.com/id/1457661062/es/vector/resumen-antecedentes-de-la-red-de-tecnolog%C3%ADa-blockchain.jpg?s=612x612&w=0&k=20&c=zoVJtY4tdFJZFLCN1pCSJX6nZH5gANOP7RSmxc8nEYI="
+                        alt="Seguridad WiFi" class="slide-img shadow" />
+                </div>
+                <div class="slide-col">
+                    <div class="slide-subtitle mb-2">Introducción</div>
+                    <p>
+                        <b>WPA</b> es el estándar de seguridad que reemplazó a WEP, reforzando el cifrado y la
+                        autenticación en redes inalámbricas. Protege datos contra accesos no autorizados y
+                        vulnerabilidades del pasado.
+                    </p>
+                    <div class="slide-list-title">¿Por qué nació?</div>
+                    <p>
+                        Fue creado por la Wi-Fi Alliance en 2003 para solucionar las debilidades de WEP, con cifrado más
+                        robusto y mecanismos de autenticación avanzados.
+                    </p>
+                </div>
+            </div>
+            <!-- Nueva presentación línea de tiempo -->
+            <div class="timeline mb-3">
+                <div class="timeline-event">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-content">
+                        <b>2003 - Lanzamiento</b>: Introducción del protocolo WPA, reemplazando a WEP en empresas y
+                        hogares.
+                    </div>
+                </div>
+                <div class="timeline-event">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-content">
+                        <b>Año 2 - Adopción masiva</b>: Dispositivos incorporan WPA/WPA2 y el cifrado se consolida con
+                        TKIP/CCMP.
+                    </div>
+                </div>
+                <div class="timeline-event">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-content">
+                        <b>Año 3 - Modernización</b>: Surgen nuevas amenazas (KRACK), se motiva el desarrollo de WPA3
+                        para afrontar los retos de seguridad.
+                    </div>
+                </div>
+            </div>
+            <div class="slide-row">
+                <div class="slide-col">
+                    <div class="slide-subtitle">Importancia</div>
+                    <p>
+                        El uso de Wi-Fi Protected Access (WPA) es esencial en el ámbito de la ciberseguridad, ya que
+                        garantiza la protección de las comunicaciones frente a posibles interceptaciones. Por ejemplo,
+                        en un entorno público como un café, la ausencia de WPA3 podría permitir que terceros accedan a
+                        información sensible transmitida a través de la red inalámbrica.
+                    </p>
+                </div>
+                <div class="slide-col">
+                    <div class="slide-subtitle">Vulnerabilidades y prevención</div>
+                    <ul class="slide-list">
+                        <li><b>WPS inseguro</b>: El PIN de WPS es vulnerable a ataques por fuerza bruta.</li>
+                        <li><b>KRACK</b>: Ataques de reinstalación de claves en WPA2 permiten descifrar datos.</li>
+                        <li><b>Dragonblood</b>: Vulnerabilidades detectadas en WPA3, como ataques de downgrade.</li>
+                        <li>Prevención: Desactivar WPS y usar contraseñas robustas, junto a monitorización activa.</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="slide-card row">
+                <div class="slide-list-title">Herramientas y auditorías</div>
+                <ul class="slide-list col-9 mt-5">
+                    <li><b>inSSIDer / NetSpot</b>: Analiza cobertura, interferencia y configuración de seguridad.</li>
+                    <li><b>Kali Linux</b>: Suite de auditoría con Aircrack-ng, Reaver, Wireshark y más.</li>
+                    <li><b>Aircrack-ng</b>: Audita redes WPA/WPA2 (ataques de diccionario, inyección, etc).</li>
+                </ul>
+                <div class="col-2"> <img src="Gemini_Generated_Image_wgtvhlwgtvhlwgtv.png" alt="" class="slide-img">
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Slide 5: Aplicaciones prácticas y conclusión -->
+        <section class="slide-section">
+            <div class="slide-row">
+                <div class="slide-col">
+                    <div class="slide-title mb-3">
+                        <i class="bi bi-lightbulb"></i> Aplicaciones Prácticas y Buenas Prácticas
+                    </div>
+                    <p>
+                        El uso de tecnologías de seguridad avanzadas como WPA3 en tanto en entornos domésticos como
+                        empresariales. En el ámbito del hogar, WPA3 proporciona una defensa eficaz contra intrusos,
+                        asegurando la seguridad en actividades como el teletrabajo, la banca en línea y la conexión de
+                        dispositivos IoT. Se recomienda utilizar routers modernos que soporten este protocolo para
+                        maximizar la protección. <br><br>
+                    </p>
+                    <ul class="slide-list">
+                        <li>Utiliza routers con soporte WPA3.</li>
+                        <li>Configura redes de invitados separadas.</li>
+                        <li>Sigue normativas ISO27001/GDPR para fortalecer el marco de seguridad.</li>
+                        <li>Mantén siempre activos los mecanismos de actualización y monitorización.</li>
+                    </ul>
+                </div>
+                <div class="slide-col">
+                    <img src="Gemini_Generated_Image_r5oyair5oyair5oy.png" class="img-fluid rounded mb-3"
+                        alt="Aplicaciones prácticas WPA" />
+                </div>
+            </div>
+            <div class="slide-card">
+                <div class="slide-list-title">Conclusión General</div>
+                <p>
+                    El estándar WIFI WPA es fundamental para mantener la integridad y seguridad de las redes
+                    inalámbricas. Su implementación adecuada, junto con la adopción de prácticas responsables de
+                    ciberseguridad, resulta indispensable para mitigar los riesgos asociados al entorno digital
+                    contemporáneo, caracterizado por su creciente complejidad y dinamismo.
+
+                    El uso de contraseñas seguras y la capacitación en temas de protección digital. Estas acciones son
+                    esenciales para mitigar riesgos y enfrentar los desafíos que surgen en un mundo cada vez más
+                    interconectado.
+                </p>
+            </div>
+            <div class="autor-section">
+                <i class="bi bi-person-circle"></i>
+                <p>Autor: Enier Arauz</p>
+            </div>
+        </section>
+
+        <footer class="footer-bg d-flex flex-wrap justify-content-between align-items-center py-3 px-4">
+            <p class="col-md-6">© 2025 Contenido creado por estudiante de la Universidad Autónoma de Chiriquí</p>
+            <div class="col-md-4 d-flex align-items-center justify-content-center mb-2 mb-md-0">
+                <i class="bi bi-shield-lock" style="font-size: 1.7rem;"></i>
+                <span class="ms-2" style="font-size:1.15rem;font-weight:600;">Seguridad Informática</span>
+            </div>
         </footer>
     </div>
 
+    <!-- Script bundle Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.min.js"
-        integrity="sha384-G/EV+4j2dNv+tEPo3++6LCgdCROaejBqfUeNjuKAiuXbjrxilcCdDz6ZAVfHWe1Y"
         crossorigin="anonymous"></script>
 </body>
 
